@@ -5,31 +5,31 @@
         </h1>
     </div>
     <div class="container">
-        {{clock-timer maxTime=maxTime skip=(action 'skip_question')}}
+        {{clock-timer maxTime=maxTime skip=(action 'skipQuestion' model)}}
     <div class="question">
         <span>{{model.Question}}</span>
     </div>
     <div class="options">
-      {{#radio-button value="1" groupValue=Option changed="answerToggled"}}
+      {{#radio-button value="1" groupValue=Option changed="toggleAnswer"}}
           {{model.Option1}}
       {{/radio-button}}<br>
-      {{#radio-button value="2" groupValue=Option changed="answerToggled"}}
+      {{#radio-button value="2" groupValue=Option changed="toggleAnswer"}}
         {{model.Option2}}
       {{/radio-button}}<br>
-      {{#radio-button value="3" groupValue=Option changed="answerToggled"}}
+      {{#radio-button value="3" groupValue=Option changed="toggleAnswer"}}
         {{model.Option3}}
       {{/radio-button}}<br>
-      {{#radio-button value="4" groupValue=Option changed="answerToggled"}}
+      {{#radio-button value="4" groupValue=Option changed="toggleAnswer"}}
         {{model.Option4}}
       {{/radio-button}}<br>
     </div>
-      <a class="button" {{action 'quit_question' model}}>
+      <a class="button" {{action 'quitQuiz' model}}>
           Quit
       </a>
-      <a class="button" {{action 'next_question' model}}>
+      <a class="button" {{action 'nextQuestion' model}}>
           Next
       </a>
-        <a class="button" {{action 'skip_question'}}>
+        <a class="button" {{action 'skipQuestion' model}}>
             skip
         </a>
     </div>
