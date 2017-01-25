@@ -4,7 +4,7 @@ const Storage = StorageObject.extend();
 
  Storage.reopenClass({
    initialState() {
-     return {user: ''};
+     return {user: '',answeredQuestions: 0,totalQuestions: 0,totalMarks: 0,startPage: 1};
    }
 });
 

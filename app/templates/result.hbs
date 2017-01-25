@@ -6,15 +6,15 @@
         <br>
         <br>
         <div align="center">
-            <span> you have answered {{count}} / 5 questions</span>
+            <span> you have answered {{stats.answeredQuestions}} / {{stats.totalQuestions}} questions</span>
             <br>
           <br>
-            <span>Your Score is {{score}}</span>
+            <span>Your Score is {{stats.totalMarks}} </span>
         </div>
       <br>
         <div align="center">
-            <a class="button" {{action 'sessionRestart'}}>Try again </a>
-          <a class="button" {{action 'sessionClear'}}>New game</a>
+            <a class="button" {{action 'restartSession'}}>Try again </a>
+          <a class="button" {{action 'clearSession'}}>New game</a>
         </div>
     </div>
 </div>

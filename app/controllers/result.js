@@ -2,20 +2,21 @@ import Ember from 'ember';
 import { storageFor } from 'ember-local-storage';
 
 export default Ember.Controller.extend({
-	queryParams: ['score','count'],
-	score:null,
-  count:0,
 	stats: storageFor('stats'),
+  resetStorageVariables()
+  {
+    this.set('stats.answeredQuestions',0);
+    this.set('stats.totalMarks',0);
+  },
   actions:{
-    sessionClear(){
+    clearSession(){
       this.set('stats.user','');
-      console.log('user cleared');
-      console.log(this.get('stats.user'));
+      this.resetStorageVariables();
       this.transitionToRoute('welcome');
     },
-    sessionRestart(){
+    restartSession(){
+      this.resetStorageVariables();
       this.transitionToRoute('question',1);
-      console.log('redirected again to question');
     }
   }
 

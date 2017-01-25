@@ -16,7 +16,7 @@ export default Ember.Component.extend({
           timerValue: moment.duration(this.get('maxTime').diff(currentTime)).seconds(),
           instant: currentTime
         });
-        console.log("timerValue", this.get('timerValue'));
+        //console.log("timerValue", this.get('timerValue'));
       }, interval);
     }
   }),

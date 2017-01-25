@@ -1,80 +1,46 @@
 import Ember from 'ember';
 import moment from 'moment';
+import { storageFor } from 'ember-local-storage';
 
 export default Ember.Controller.extend({
-  tot_questions: 6,
-  answered_questions:0,
-  tot_weight: 0,
-  answer: null,
-  init(){
-    this._super(...arguments);
-    this.set('q_id',1);
-  },
-
-  last_question_check(){
-    console.log('last question check');
-    if (this.get('q_id') === this.get('tot_questions')) {
-      let temp_weight = this.get('tot_weight');
-      let temp_count = this.get('answered_questions');
-      this.set('tot_weight', 0);
-      this.set('answered_questions',0);
-      this.set('q_id',1);
-      this.transitionToRoute('result', {queryParams: {'score': temp_weight, 'count': temp_count}});
+  stats: storageFor('stats'),
+  isLastQuestion(model){
+    if (parseInt(model.get('id')) === this.get('stats.totalQuestions')) {
+      this.transitionToRoute('result');
     } else {
-      this.transitionToRoute('question', this.get('q_id'));
+      this.transitionToRoute('question', parseInt(model.get('id'))+1);
     }
   },
-
   setTimerLimit() {
     this.set('maxTime', moment().add(30, 'seconds'));
-    console.log("MAX TIME:", this.get('maxTime').seconds());
+    //console.log("MAX TIME:", this.get('maxTime').seconds());
   },
 
   actions:{
-    next_question(model){
-      console.log('next question');
+    nextQuestion(model){
       this.set('Option',null);
-      let new_id = this.get('q_id')+1;
-      this.set('q_id', new_id);
-      if(parseInt(model.get('Answer')) === parseInt(this.get('answer'))){
-        let new_weight = this.get('tot_weight') + model.get('Weight');
-        this.set('tot_weight',new_weight);
+      if(parseInt(model.get('answer')) === parseInt(this.get('answer'))){
+        let new_weight = this.get('stats.totalMarks') + model.get('Weight');
+        this.set('stats.totalMarks',new_weight);
       }
-      if(Ember.isPresent(this.get('answer'))){
-        let count = this.get('answered_questions')+1;
-        this.set('answered_questions',count);
+      if(this.get('answer')){
+        let count = this.get('stats.answeredQuestions')+1;
+        this.set('stats.answeredQuestions',count);
       }
       this.set('answer',null);
-      this.last_question_check();
+      this.isLastQuestion(model);
     },
-    skip_question(){
-      console.log('skip question');
-      let new_id = this.get('q_id')+1;
-      this.set('q_id', new_id);
+    skipQuestion(model){
       this.set('Option',null);
       this.set('answer',null);
-      this.last_question_check();
+      this.isLastQuestion(model);
     },
-    quit_question(){
-      console.log('quit question');
-      //if(parseInt(model.get('Answer')) === parseInt(this.get('answer'))){
-        //let new_weight = this.get('tot_weight') + model.get('Weight');
-        //this.set('tot_weight',new_weight);
-      //}
-      //counting the answered questions
-      //if(Ember.isPresent(this.get('answer'))){
-        //let count = this.get('answered_questions')+1;
-        //this.set('answered_questions',count);
-      //}
+    quitQuiz(){
       this.set('answer',null);
-      this.set('q_id',1);
-      let temp_weight = this.get('tot_weight');
-      let temp_count = this.get('answered_questions');
-      this.set('tot_weight',0);
-      this.set('answered_questions',0);
-      this.transitionToRoute('result',{queryParams:{'score':temp_weight,'count': temp_count}});
+      this.set('option',null);
+      this.transitionToRoute('result');
     },
-    answerToggled(choice){
+    toggleAnswer(choice){
       this.set('answer',choice);
     }
   }
