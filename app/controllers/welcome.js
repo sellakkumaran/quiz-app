@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { storageFor } from 'ember-local-storage';
 
 export default Ember.Controller.extend({
+  //startPage:1,
   stats: storageFor('stats'),
   resetStorageVariables()
   {
