@@ -1,0 +1,65 @@
+
+html {
+  font-family: 'antoniolight', sans-serif;
+  background-image: url(http://orig11.deviantart.net/f572/f/2014/179/f/6/les_nuits_d_ete_by_helloss73-d7oam0l.jpg);
+}
+
+h1 {
+  text-align: center;
+  margin: 0px;
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.question{
+  width: 300px;
+  text-align: center;
+  border: 5px black;
+  border-radius: 25px;
+  margin: 5px;
+}
+
+.options{
+  width: 300px;
+  border: 5px black;
+  border-radius: 25px;
+  padding: 25px;
+  margin: 25px;
+}
+.container{
+  background: rgba(0, 0, 0, 0.3);
+  width: 60%;
+  height: 300px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  border: 10px black;
+  border-radius: 25px;
+}
+.container-big{
+  width: 80%;
+  height: 600px;
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background: transparent;
+}
+.button {
+  padding: 12px 30px 13px;
+  text-decoration: none;
+  color: #fff;
+  background: #2185D0;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.button:hover {
+  opacity: 1;
+}
+
+.header{
+  width: 80%
+}
