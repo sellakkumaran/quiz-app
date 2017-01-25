@@ -1,0 +1,36 @@
+<div class="container-big">
+    <div>
+        <h1>
+            QUIZ
+        </h1>
+    </div>
+    <div class="container">
+        {{clock-timer maxTime=maxTime skip=(action 'skip_question')}}
+    <div class="question">
+        <span>{{model.Question}}</span>
+    </div>
+    <div class="options">
+      {{#radio-button value="1" groupValue=Option changed="answerToggled"}}
+          {{model.Option1}}
+      {{/radio-button}}<br>
+      {{#radio-button value="2" groupValue=Option changed="answerToggled"}}
+        {{model.Option2}}
+      {{/radio-button}}<br>
+      {{#radio-button value="3" groupValue=Option changed="answerToggled"}}
+        {{model.Option3}}
+      {{/radio-button}}<br>
+      {{#radio-button value="4" groupValue=Option changed="answerToggled"}}
+        {{model.Option4}}
+      {{/radio-button}}<br>
+    </div>
+      <a class="button" {{action 'quit_question' model}}>
+          Quit
+      </a>
+      <a class="button" {{action 'next_question' model}}>
+          Next
+      </a>
+        <a class="button" {{action 'skip_question'}}>
+            skip
+        </a>
+    </div>
+</div>
